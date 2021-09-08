@@ -6,7 +6,7 @@ db = "banco.db"
 if not uteis.existe_banco(db):
     uteis.criar_banco(db)
 while True:
-    os.system('cls')
+    os.system('cls || clear')
     menu = int(input("[1] Inserir conta\n"
                      "[2] Pesquisar por nome\n"
                      "[3] Pesquisar por data de vencimento\n"
