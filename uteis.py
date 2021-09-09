@@ -63,7 +63,7 @@ def insercao(db):
 
 def consulta_nome(db):
     """Lista as contas do banco por nome."""
-    os.system("cls")
+    limpaTela()
     nome = str(input("Digite o nome da conta:\n"))
     try:
         banco, cursor = db_con(db)
@@ -186,3 +186,10 @@ def color_msg(txt, cor):
         i = '\033[;37m'
 
     print(f"{i}{txt}\033[m")
+
+def limpaTela():
+    comando = 'clear'
+    if os.name in ('nt', 'dos'):
+        comando = 'cls'
+    os.system(comando)
+
