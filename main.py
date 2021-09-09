@@ -1,12 +1,10 @@
 import uteis
-import os
-
 
 db = "banco.db"
 if not uteis.existe_banco(db):
     uteis.criar_banco(db)
 while True:
-    os.system('cls || clear')
+    uteis.limpaTela()
     menu = int(input("[1] Inserir conta\n"
                      "[2] Pesquisar por nome\n"
                      "[3] Pesquisar por data de vencimento\n"
@@ -18,7 +16,7 @@ while True:
         uteis.insercao(db)
     elif menu == 2:
         # pesquisa por nome
-        os.system("cls")
+        uteis.limpaTela()
         uteis.consulta_nome(db)
     elif menu == 3:
         # pesquisa por data
