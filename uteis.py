@@ -141,6 +141,7 @@ def excluir(db):
             banco.close()
 
 def listagem(resultado):
+
     """laço for para listar a aconsulta no banco de dados."""
     print('+', '-' * 102, '+')
     print(
@@ -150,6 +151,24 @@ def listagem(resultado):
         print(f"| {x + 1:^8}|{y[1]:^10}|R$ {y[2]:<7.2f}|{y[3]:^10}|{y[4]:^10}|%{y[5]:^6}| {y[6]:^40} |")
     print('+', '-' * 102, '+')
     input("\nPressione enter")
+
+def calcula_juros(db, nome):
+    """Calcula o juros de uma conta."""
+    try:
+        banco, cursor = db_con(db)
+        cursor.execute(f"SELECT valor, juros FROM conta WHERE nome = '{nome}';")
+        resultado = cursor.fetchall()
+    except Exception as e:
+        color_msg(f"Erro do tipo: [{e}]", 1)
+        input("Pressione enter")
+    else:
+        valor, juros = resultado[0][0], resultado[0][1]
+        nValor = float(valor + (valor * (juros / 100)))
+        cursor.execute(f"UPDATE conta SET valor = {nValor} WHERE nome = '{nome}'")
+        banco.commit()
+    finally:
+        cursor.close()
+        banco.close()
 
 def color_msg(txt, cor):
     """
