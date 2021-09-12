@@ -102,14 +102,7 @@ def consulta_todos(db):
     except Exception as e:
         print(f"Erro! [{e}]")
     else:
-        print('+', '-' * 107, '+')
-        print(
-            f"| {'Índice':^8}|{'id':^4}|{'Conta':^10}|{'Valor':^10}|{'Data':^10}|{'Parcelas':^10}|{'Juros':^7}| {'Observação':^40} |")
-        print('+', '-' * 107, '+')
-        for x, y in enumerate(resultado):
-            print(f"| {x + 1:^8}|{y[0]:>4}|{y[1]:^10}|R$ {y[2]:^7.2f}|{y[3]:^10}|{y[4]:^10}|%{y[5]:^6}| {y[6]:^40} |")
-        print('+', '-' * 107, '+')
-        input("\nPressione enter")
+        listagem(resultado)
     finally:
         cursor.close()
         banco.close()
@@ -141,11 +134,9 @@ def excluir(db):
             banco.close()
 
 def listagem(resultado):
-
     """laço for para listar a aconsulta no banco de dados."""
     print('+', '-' * 102, '+')
-    print(
-        f"| {'Índice':^8}|{'Conta':^10}|{'Valor':^10}|{'Data':^10}|{'Parcelas':^10}|{'Juros':^7}| {'Observação':^40} |")
+    print(f"| {'Índice':^8}|{'Conta':^10}|{'Valor':^10}|{'Data':^10}|{'Parcelas':^10}|{'Juros':^7}| {'Observação':^40} |")
     print('+', '-' * 102, '+')
     for x, y in enumerate(resultado):
         print(f"| {x + 1:^8}|{y[1]:^10}|R$ {y[2]:<7.2f}|{y[3]:^10}|{y[4]:^10}|%{y[5]:^6}| {y[6]:^40} |")
